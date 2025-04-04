@@ -1,0 +1,214 @@
+/**
+ * Modern Tic Tac Toe Game - Base Styles
+ * Variables, fonts, and core layout styles
+ */
+
+/* ========== CSS VARIABLES ========== */
+:root {
+    /* Game board sizes */
+    --cell-size: 120px;
+    --board-gap: 15px;
+    --board-size: calc(3 * var(--cell-size) + 2 * var(--board-gap));
+    
+    /* Colors */
+    --primary: #4c6ef5;
+    --primary-dark: #364fc7;
+    --secondary: #ff922b;
+    --secondary-dark: #f76707;
+    
+    --player-x: #4c6ef5;
+    --player-x-light: rgba(76, 110, 245, 0.15);
+    --player-o: #ff922b;
+    --player-o-light: rgba(255, 146, 43, 0.15);
+    
+    /* Light mode colors */
+    --bg-primary-light: #f8f9fa;
+    --bg-secondary-light: #ffffff;
+    --text-primary-light: #212529;
+    --text-secondary-light: #495057;
+    --border-light: #dee2e6;
+    --toggle-bg-light: #ced4da;
+    --toggle-handle-light: #ffffff;
+    
+    /* Dark mode colors */
+    --bg-primary-dark: #212529;
+    --bg-secondary-dark: #343a40;
+    --text-primary-dark: #f8f9fa;
+    --text-secondary-dark: #e9ecef;
+    --border-dark: #495057;
+    --toggle-bg-dark: #495057;
+    --toggle-handle-dark: #f8f9fa;
+    
+    /* Shadows */
+    --shadow-elevation-low: 0 2px 4px rgba(0, 0, 0, 0.1);
+    --shadow-elevation-medium: 0 6px 16px rgba(0, 0, 0, 0.1);
+    --shadow-elevation-high: 0 12px 28px rgba(0, 0, 0, 0.15);
+    --text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+    
+    /* Transitions */
+    --transition-speed: 0.3s;
+    
+    /* Set default (light) theme */
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --border: var(--border-light);
+    --toggle-bg: var(--toggle-bg-light);
+    --toggle-handle: var(--toggle-handle-light);
+    
+    /* Text on colored backgrounds */
+    --text-on-primary: white;
+    --text-on-secondary: white;
+    
+    /* Typography */
+    --font-family: 'Poppins', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+    --font-size-base: 16px;
+    --font-size-small: 0.875rem;
+    --font-size-large: 1.125rem;
+    --font-size-xl: 1.5rem;
+    --font-size-xxl: 2rem;
+    --font-weight-normal: 400;
+    --font-weight-medium: 500;
+    --font-weight-bold: 600;
+    --line-height: 1.5;
+    --title-font-size: clamp(1.75rem, 5vw, 2.5rem);
+    
+    /* Spacing */
+    --spacing-xs: 0.25rem;
+    --spacing-sm: 0.5rem;
+    --spacing-md: 1rem;
+    --spacing-lg: 1.5rem;
+    --spacing-xl: 2rem;
+    --spacing-xxl: 3rem;
+    --container-padding: clamp(1rem, 5vw, 2rem);
+    --border-radius-sm: 0.25rem;
+    --border-radius-md: 0.5rem;
+    --border-radius-lg: 0.75rem;
+    --border-radius-full: 9999px;
+    
+    /* Animations */
+    --transition-short: 0.15s ease;
+    --transition-medium: 0.3s ease;
+    --transition-long: 0.5s ease;
+    --transition-bounce: cubic-bezier(0.68, -0.55, 0.27, 1.55);
+    --easing-bounce: cubic-bezier(0.8, 0, 0.2, 1);
+}
+
+/* ========== BASE STYLES ========== */
+/* Import font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
+
+/* Reset */
+*,
+*::before,
+*::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+html {
+    font-size: 16px;
+}
+
+body {
+    font-family: 'Segoe UI', -apple-system, BlinkMacSystemFont, Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    line-height: 1.5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    min-height: 100vh;
+    padding: 2rem 1rem;
+    transition: background-color var(--transition-speed) ease, color var(--transition-speed) ease;
+}
+
+button {
+    font-family: inherit;
+    cursor: pointer;
+    font-weight: var(--font-weight-medium);
+}
+
+/* Dark mode with media query first, can be overridden by class */
+@media (prefers-color-scheme: dark) {
+    :root {
+        --bg-primary: var(--bg-primary-dark);
+        --bg-secondary: var(--bg-secondary-dark);
+        --text-primary: var(--text-primary-dark);
+        --text-secondary: var(--text-secondary-dark);
+        --border: var(--border-dark);
+        --toggle-bg: var(--toggle-bg-dark);
+        --toggle-handle: var(--toggle-handle-dark);
+    }
+}
+
+/* Dark mode with class (takes precedence) */
+body.dark-mode {
+    --bg-primary: var(--bg-primary-dark);
+    --bg-secondary: var(--bg-secondary-dark);
+    --text-primary: var(--text-primary-dark);
+    --text-secondary: var(--text-secondary-dark);
+    --border: var(--border-dark);
+    --toggle-bg: var(--toggle-bg-dark);
+    --toggle-handle: var(--toggle-handle-dark);
+    background-color: var(--bg-primary-dark);
+    color: var(--text-primary-dark);
+}
+
+/* Light mode with class (takes precedence over media query) */
+body.light-mode {
+    --bg-primary: var(--bg-primary-light);
+    --bg-secondary: var(--bg-secondary-light);
+    --text-primary: var(--text-primary-light);
+    --text-secondary: var(--text-secondary-light);
+    --border: var(--border-light);
+    --toggle-bg: var(--toggle-bg-light);
+    --toggle-handle: var(--toggle-handle-light);
+    background-color: var(--bg-primary-light);
+    color: var(--text-primary-light);
+}
+
+/* ========== LAYOUT ========== */
+.container {
+    width: 100%;
+    max-width: 500px;
+    margin: 0 auto;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-lg);
+    align-items: center;
+}
+
+.title {
+    font-size: var(--title-font-size);
+    font-weight: var(--font-weight-bold);
+    text-align: center;
+    margin-bottom: var(--spacing-md);
+    background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    animation: pulse 2s infinite alternate;
+}
+
+.controls-wrapper {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: var(--spacing-md);
+    margin-bottom: var(--spacing-lg);
+}
+
+/* --- Title & Controls Wrapper --- */
+.title-controls-wrapper {
+    margin-bottom: 1.5rem;
+    width: 100%;
+    max-width: 500px;
+    position: relative;
+    padding: 0 2.5rem;
+    display: flex;
+    align-items: center;
+}
