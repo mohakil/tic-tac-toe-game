@@ -1,0 +1,126 @@
+/**
+ * Modern Tic Tac Toe Game - Animations
+ * Keyframes and animations for the game
+ */
+
+/* --- Animations & Keyframes --- */
+@keyframes pulse {
+    0% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.05);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+@keyframes bounce {
+    0%, 20%, 50%, 80%, 100% {
+        transform: translateY(0);
+    }
+    40% {
+        transform: translateY(-20px);
+    }
+    60% {
+        transform: translateY(-10px);
+    }
+}
+
+@keyframes fadeIn {
+    0% {
+        opacity: 0;
+        transform: translateY(-10px);
+    }
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes scaleIn {
+    0% {
+        opacity: 0;
+        transform: scale(0.8);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes win-pulse {
+    0% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(76, 110, 245, 0.4);
+    }
+    70% {
+        transform: scale(1.05);
+        box-shadow: 0 0 0 15px rgba(76, 110, 245, 0);
+    }
+    100% {
+        transform: scale(1);
+        box-shadow: 0 0 0 0 rgba(76, 110, 245, 0);
+    }
+}
+
+@keyframes confetti-fall {
+    0% {
+        transform: translateY(-30px) rotate(0deg);
+        opacity: 1;
+    }
+    100% {
+        transform: translateY(100vh) rotate(720deg);
+        opacity: 0;
+    }
+}
+
+/* Responsive Styles */
+
+/* For smaller screens */
+@media (max-width: 400px) {
+    :root {
+        /* Smaller cell size for small screens */
+        --cell-size: 80px;
+        --board-gap: 10px;
+        --spacing-md: 0.75rem;
+        --spacing-lg: 1.25rem;
+    }
+    
+    /* Action buttons */
+    .btn {
+        padding: 0.75rem 1rem;
+        font-size: 1rem;
+    }
+    
+    /* Modal content */
+    .modal-content {
+        padding: 1.5rem;
+        max-width: 300px;
+    }
+}
+
+/* For larger screens */
+@media (min-width: 768px) {
+    :root {
+        /* Larger cells for big screens */
+        --cell-size: 130px;
+        --board-gap: 20px;
+        --container-max-width: 600px;
+    }
+}
+
+/* For screens with better hardware */
+@media (min-width: 992px) {
+    /* Add hover effects and depth */
+    .board {
+        perspective: 1000px;
+        transform-style: preserve-3d;
+    }
+    
+    .cell:hover {
+        transform: translateY(-8px) scale(1.02);
+        box-shadow: 0 12px 32px rgba(0, 0, 0, 0.15);
+    }
+}
