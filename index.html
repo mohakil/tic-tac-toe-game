@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="description" content="A modern Tic Tac Toe game with beautiful UI, dark mode, and fun animations.">
+    <meta name="theme-color" content="#212529">
+    <title>Tic Tac Toe</title>
+    <link rel="stylesheet" href="css/base.css">
+    <link rel="stylesheet" href="css/components.css">
+    <link rel="stylesheet" href="css/modals.css">
+    <link rel="stylesheet" href="css/animations.css">
+    <link rel="stylesheet" href="css/confetti.css">
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+</head>
+<body>
+    <div class="container">
+        <div class="title-controls-wrapper">
+            <h1 class="title">Tic Tac Toe</h1>
+            <button class="icon-btn settings-btn" aria-label="Settings">
+                <span class="settings-icon">⚙️</span>
+            </button>
+        </div>
+        
+        <div class="score-board">
+            <div class="score-box x">
+                <span class="score-label">Player X</span>
+                <span class="score-value x-score">0</span>
+            </div>
+            <div class="score-box o">
+                <span class="score-label">Player O</span>
+                <span class="score-value o-score">0</span>
+            </div>
+        </div>
+        
+        <div class="status x-turn">Player X's turn</div>
+        
+        <div class="board">
+            <div class="cell" data-index="0"></div>
+            <div class="cell" data-index="1"></div>
+            <div class="cell" data-index="2"></div>
+            <div class="cell" data-index="3"></div>
+            <div class="cell" data-index="4"></div>
+            <div class="cell" data-index="5"></div>
+            <div class="cell" data-index="6"></div>
+            <div class="cell" data-index="7"></div>
+            <div class="cell" data-index="8"></div>
+        </div>
+        
+        <div class="actions">
+            <button class="btn btn-primary" id="newGameBtn">New Game</button>
+            <button class="btn btn-secondary" id="resetScoreBtn">Reset Score</button>
+        </div>
+    </div>
+    
+    <!-- Game Over Modal -->
+    <div class="modal" id="gameOverModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" aria-label="Close">&times;</button>
+            <h2 class="modal-title">Game Over</h2>
+            <p class="modal-text">Player X wins! 🎉</p>
+            <button class="btn btn-primary modal-action-btn">Play Again</button>
+        </div>
+    </div>
+    
+    <!-- Settings Modal -->
+    <div class="modal" id="settingsModal">
+        <div class="modal-content">
+            <button class="modal-close-btn" aria-label="Close">&times;</button>
+            <h2 class="modal-title">Settings</h2>
+            <div class="settings-list">
+                <div class="settings-item">
+                    <span class="settings-label">Dark Mode</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="darkModeToggle">
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <span class="settings-label">Sound Effects</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="soundToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="settings-item">
+                    <span class="settings-label">Vibration</span>
+                    <label class="toggle-switch">
+                        <input type="checkbox" id="vibrationToggle" checked>
+                        <span class="slider round"></span>
+                    </label>
+                </div>
+                <div class="settings-item intensity-item">
+                    <span class="settings-label">Vibration Intensity</span>
+                    <div class="range-setting-control">
+                        <input type="range" class="range-slider" id="vibrationIntensity" min="1" max="100" value="50">
+                        <span class="intensity-value" id="intensityValue">50</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="script.js"></script>
+</body>
+</html>
